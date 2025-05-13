@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Votación Blockchain - Sprint 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #0056b3;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        input[type="text"],
+        input[type="text"]:disabled {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .admin-section {
+            border: 1px solid #0056b3;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            background-color: #e7f3ff;
+        }
+
+        #optionsDiv,
+        #resultsDiv {
+            margin-top: 20px;
+        }
+
+        .optionItem,
+        .resultItem {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .optionItem button {
+            margin-left: 10px;
+            background-color: #28a745;
+        }
+
+        .optionItem button:hover {
+            background-color: #1e7e34;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .status-message {
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .success-message {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sistema de Votación Descentralizado (Sprint 2)</h1>
+
+        <p>Conectado como: <span id="accountAddress" class="status-message">No conectado</span></p>
+        <p>Rol: <span id="accountRole" class="status-message">Desconocido</span></p>
+        <p>Estado de Registro para Votar: <span id="registrationStatus" class="status-message">Verificando...</span></p>
+    </div>
+
+    <div class="container admin-section" id="adminPanel" style="display:none;">
+        <h3>Panel de Administración</h3>
+        <div>
+            <h4>Registrar Nuevo Votante</h4>
+            <input type="text" id="voterAddressInput" placeholder="Dirección Ethereum del votante">
+            <button id="registerVoterBtn">Registrar Votante</button>
+        </div>
+        <hr>
+        <div>
+            <h4>Agregar Nueva Opción de Votación</h4>
+            <input type="text" id="optionNameInput" placeholder="Nombre de la nueva opción">
+            <button id="addOptionBtn">Agregar Opción</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Opciones Disponibles para Votar</h2>
+        <div id="optionsDiv">
+            <p>Cargando opciones...</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Resultados Parciales</h2>
+        <div id="resultsDiv">
+            <p>Cargando resultados...</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
